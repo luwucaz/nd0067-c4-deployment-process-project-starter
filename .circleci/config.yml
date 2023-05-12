@@ -9,11 +9,11 @@ jobs:
   build:
     docker:
       # the base image can run most needed actions with orbs
-      - image: "cimg/node:15.14"
+      - image: 'cimg/node:15.14'
     steps:
       # install node and checkout code
       - node/install:
-          node-version: "15.14"
+          node-version: '15.14'
       - checkout
       # Use root level package.json to install dependencies in the frontend app
       - run:
@@ -52,11 +52,11 @@ jobs:
   # deploy step will run only after manual approval
   deploy:
     docker:
-      - image: "cimg/base:stable"
+      - image: 'cimg/base:stable'
       # more setup needed for aws, node, elastic beanstalk
     steps:
       - node/install:
-          node-version: "15.14"
+          node-version: '15.14'
       - eb/setup
       - aws-cli/setup
       - checkout
@@ -65,6 +65,7 @@ jobs:
           # TODO: Install, build, deploy in both apps
           command: |
             echo "# TODO: Install, build, deploy in both apps"
+            npm run deploy
 
 workflows:
   udagram:
